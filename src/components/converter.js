@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { MdDeleteForever } from "react-icons/md";
-import "./converter.css";
 
 export function Converter() {
   const [list, setList] = useState([
