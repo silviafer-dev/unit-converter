@@ -1,4 +1,5 @@
 import { Converter } from "../components/converter.js";
+import "./home.css";
 
 export function Home() {
   return (

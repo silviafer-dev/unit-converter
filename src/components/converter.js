@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { HiSwitchHorizontal } from "react-icons/hi";
-import { MdDeleteForever } from "react-icons/md";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { AiOutlineHeart } from "react-icons/ai";
+import { TbArrowsRightLeft } from "react-icons/tb";
+import { RiCloseLine } from "react-icons/ri";
 
 export function Converter() {
   const [list, setList] = useState([
@@ -95,68 +97,75 @@ export function Converter() {
 
   return (
     <div className="converter-block">
-      <h2 className="title">convert</h2>
-      <div className="converting">
-        <div className="select-block">
-          <select
-            className="select"
-            value={choice}
-            defaultValue={"default"}
-            onChange={(e) => {
-              setChoice(e.target.value);
-            }}
-          >
-            <option value={"default"} disabled>
-              Choose an option
-            </option>
-            <option value={"km"}>km &gt; miles</option>
-            <option value={"miles"}>miles &gt; km</option>
-            <option value={"m"}>m &gt; feet</option>
-            <option value={"feet"}>feet &gt; m</option>
-            <option value={"cm"}>cm &gt; inches</option>
-            <option value={"inches"}>inches &gt; cm</option>
-          </select>
-          <hr></hr>
-        </div>
-
-        <HiSwitchHorizontal
-          size="20px"
-          onClick={() => {
-            flip();
-          }}
-        />
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="focus">
-            <input
-              className="input-num"
-              type="number"
-              value={listItem}
-              name="unit1"
-              onChange={(evt) => {
-                setListItem(evt.target.value);
+      <div className="select-block">
+        <h2 className="title">convert</h2>
+        <div className="converting">
+          <div className="choice">
+            <select
+              className="select"
+              value={choice}
+              defaultValue={"default"}
+              onChange={(e) => {
+                setChoice(e.target.value);
               }}
-            />
+            >
+              <option value={"default"} disabled>
+                Choose an option
+              </option>
+              <option value={"km"}>km &gt; miles</option>
+              <option value={"miles"}>miles &gt; km</option>
+              <option value={"m"}>m &gt; feet</option>
+              <option value={"feet"}>feet &gt; m</option>
+              <option value={"cm"}>cm &gt; inches</option>
+              <option value={"inches"}>inches &gt; cm</option>
+            </select>
             <hr></hr>
           </div>
-          <span>{firstValue}</span>
 
+          <TbArrowsRightLeft
+            size="20px"
+            onClick={() => {
+              flip();
+            }}
+          />
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="focus">
+              <input
+                className="input-num"
+                type="number"
+                value={listItem}
+                name="unit1"
+                onChange={(evt) => {
+                  setListItem(evt.target.value);
+                }}
+              />
+              <hr></hr>
+            </div>
+            <span>{firstValue}</span>
+          </form>
+        </div>
+        <div className="block-result">
+          <AiOutlineHeart className="heart" onClick={handleSubmit} />
           <div className="result">
             <p className="result-num">{result}</p>
             <p>{secondValue}</p>
           </div>
-          <button type="submit">Add</button>
-        </form>
-
-        <p>Saved</p>
+        </div>
+      </div>
+      <h3 className="saved-title">saved</h3>
+      <div className="saving">
         {list.map((item) => (
-          <div key={item.id}>
-            <p>{item.from}</p>
-            <p>{item.unit1}</p>
-            <p>{item.unit2}</p>
-            <p>{item.to}</p>
-            <MdDeleteForever
+          <div className="saved-block" key={item.id}>
+            <div className="orco">
+              <p className="elements">{item.unit1}</p>
+              <p className="elements">{item.from}</p>
+              <HiOutlineArrowNarrowRight className="elements" />
+              <p className="elements">{item.to}</p>
+              <p className="elements">{item.unit2}</p>
+            </div>
+            <RiCloseLine
+              className="delete"
               onClick={() => deleteList(item.id)}
-              className="icon delete-icon"
             />
           </div>
         ))}
