@@ -1,5 +1,5 @@
 import { HiSwitchHorizontal } from "react-icons/hi";
-// import "./header.css";
+import "./header.css";
 export function Header() {
   return (
     <div>
