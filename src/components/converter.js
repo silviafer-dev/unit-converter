@@ -20,7 +20,7 @@ export function Converter() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (listItem) {
-      let id = Math.floor(Math.random() * 10000);
+      let id = Math.floor(Math.random() * 100000);
       let newList = {
         id: id,
         from: firstValue,
@@ -30,7 +30,6 @@ export function Converter() {
       };
       setList([newList, ...list]);
       setListItem("");
-      console.log(list);
     } else {
       setListItem("");
     }
@@ -52,7 +51,7 @@ export function Converter() {
     localStorage.setItem("List", JSON.stringify(list));
   }, [list]);
 
-  function flip() {
+  function flip(e) {
     setChoice(secondValue);
   }
 
@@ -71,14 +70,14 @@ export function Converter() {
       secondValue = "km";
       result = parseFloat((listItem * 1.60934).toFixed(2));
       break;
-    case "m":
-      firstValue = "m";
+    case "metres":
+      firstValue = "metres";
       secondValue = "feet";
       result = parseFloat((listItem * 3.28084).toFixed(2));
       break;
     case "feet":
       firstValue = "feet";
-      secondValue = "m";
+      secondValue = "metres";
       result = parseFloat((listItem * 0.3048).toFixed(2));
       break;
     case "cm":
@@ -100,34 +99,36 @@ export function Converter() {
       <div className="select-block">
         <h2 className="title">convert</h2>
         <div className="converting">
-          <div className="choice">
-            <select
-              className="select"
-              value={choice}
-              defaultValue={"default"}
-              onChange={(e) => {
-                setChoice(e.target.value);
-              }}
-            >
-              <option value={"default"} disabled>
-                Choose an option
-              </option>
-              <option value={"km"}>km &gt; miles</option>
-              <option value={"miles"}>miles &gt; km</option>
-              <option value={"m"}>m &gt; feet</option>
-              <option value={"feet"}>feet &gt; m</option>
-              <option value={"cm"}>cm &gt; inches</option>
-              <option value={"inches"}>inches &gt; cm</option>
-            </select>
-            <hr></hr>
-          </div>
+          <div className="choice-media">
+            <div className="choice">
+              <select
+                className="select"
+                value={choice}
+                defaultValue={"default"}
+                onChange={(e) => {
+                  setChoice(e.target.value);
+                }}
+              >
+                <option value={"default"} disabled>
+                  Choose an option
+                </option>
+                <option value={"km"}>km &rarr; miles</option>
+                <option value={"miles"}>miles &rarr; km</option>
+                <option value={"metres"}>metres &rarr; feet</option>
+                <option value={"feet"}>feet &rarr; metres</option>
+                <option value={"cm"}>cm &rarr; inches</option>
+                <option value={"inches"}>inches &rarr; cm</option>
+              </select>
+              <hr></hr>
+            </div>
 
-          <TbArrowsRightLeft
-            size="20px"
-            onClick={() => {
-              flip();
-            }}
-          />
+            <TbArrowsRightLeft
+              className="flip"
+              onClick={() => {
+                flip();
+              }}
+            />
+          </div>
           <form className="form" onSubmit={handleSubmit}>
             <div className="focus">
               <input
@@ -156,12 +157,12 @@ export function Converter() {
       <div className="saving">
         {list.map((item) => (
           <div className="saved-block" key={item.id}>
-            <div className="orco">
+            <div className="paragraph">
               <p className="elements">{item.unit1}</p>
               <p className="elements">{item.from}</p>
               <HiOutlineArrowNarrowRight className="elements" />
-              <p className="elements">{item.to}</p>
               <p className="elements">{item.unit2}</p>
+              <p className="elements">{item.to}</p>
             </div>
             <RiCloseLine
               className="delete"

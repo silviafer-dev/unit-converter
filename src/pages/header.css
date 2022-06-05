@@ -17,3 +17,10 @@
 h1 {
   font-weight: 900;
 }
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
