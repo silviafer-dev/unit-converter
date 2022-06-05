@@ -1,0 +1,26 @@
+.header {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+  height: 58px;
+  color: #2e0039;
+  padding-left: 100px;
+}
+.icon-header {
+  width: 60px;
+  height: 30px;
+}
+h1 {
+  font-weight: 900;
+}
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
