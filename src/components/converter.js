@@ -53,6 +53,7 @@ export function Converter() {
 
   function flip(e) {
     setChoice(secondValue);
+    setListItem(result);
   }
 
   let result = 0;
