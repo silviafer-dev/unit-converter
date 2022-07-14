@@ -19,20 +19,17 @@ export function Converter() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (listItem) {
-      let id = Math.floor(Math.random() * 100000);
-      let newList = {
-        id: id,
-        from: firstValue,
-        unit1: listItem,
-        unit2: result,
-        to: secondValue,
-      };
-      setList([newList, ...list]);
-      setListItem("");
-    } else {
-      setListItem("");
-    }
+
+    let id = Math.floor(Math.random() * 100000);
+    let newList = {
+      id: id,
+      from: firstValue,
+      unit1: listItem,
+      unit2: result,
+      to: secondValue,
+    };
+    setList([newList, ...list]);
+    setListItem("");
   };
 
   const deleteList = (id) => {
